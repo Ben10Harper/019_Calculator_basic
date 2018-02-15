@@ -207,6 +207,9 @@ class Calculator implements ActionListener
             textField.setText("");
             for(int i=0;i<s.length()-1;i++)
             textField.setText(textField.getText()+s.charAt(i));
+            //It takes the text already in the bar, then in a for loop that does every number besides the last one, length-1 is
+            //the last number and it goes as long as it's less than that number. So for every number besides the last, it rewrites 
+            //the numbers which makes it seem like the last digit was deleted.
         }        
     }
  
