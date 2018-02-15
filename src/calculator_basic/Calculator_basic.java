@@ -215,6 +215,21 @@ class Calculator implements ActionListener
  
     public static void main(String...s)
     {
+        double mathTest = Math.pow(10.0, 2.0);
+        System.out.println("10^2="+mathTest);
+        
+        mathTest = Math.sqrt(25.0);
+        System.out.println("sqrt(25)="+mathTest);
+        
+        mathTest = Math.pow(25.0, 0.5);
+        System.out.println("pow version of sqrt(25)="+mathTest);
+        
+        mathTest = Math.pow(10.0, 2.5);
+        System.out.println("10^2.5="+mathTest);
+        
+        mathTest = Math.log10(100.0);
+        System.out.println("log(100)="+mathTest);
+
         new Calculator();
     }
 }
