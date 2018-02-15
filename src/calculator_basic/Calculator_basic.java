@@ -15,7 +15,7 @@ class Calculator implements ActionListener
     JTextField textField;
     JButton b1,b2,b3,b4,b5,b6,b7,b8,b9,b0,bdiv,bmul,bsub,badd,bdec,beq,bdel,bclr;
  
-    static double a=0,b=0,result=0;
+    static double firstNumber=0,secondNumber=0,result=0;
     static int operator=0;
  
     Calculator()
@@ -148,48 +148,48 @@ class Calculator implements ActionListener
         
         if(e.getSource()==badd)
         {
-            a=Double.parseDouble(textField.getText());
+            firstNumber=Double.parseDouble(textField.getText());
             operator=1;
             textField.setText("");
         } 
         
         if(e.getSource()==bsub)
         {
-            a=Double.parseDouble(textField.getText());
+            firstNumber=Double.parseDouble(textField.getText());
             operator=2;
             textField.setText("");
         }
         
         if(e.getSource()==bmul)
         {
-            a=Double.parseDouble(textField.getText());
+            firstNumber=Double.parseDouble(textField.getText());
             operator=3;
             textField.setText("");
         }
         
         if(e.getSource()==bdiv)
         {
-            a=Double.parseDouble(textField.getText());
+            firstNumber=Double.parseDouble(textField.getText());
             operator=4;
             textField.setText("");
         }
         
         if(e.getSource()==beq)
         {
-            b=Double.parseDouble(textField.getText());
+            secondNumber=Double.parseDouble(textField.getText());
         
             switch(operator)
             {
-                case 1: result=a+b;
+                case 1: result=firstNumber+secondNumber;
                     break;
         
-                case 2: result=a-b;
+                case 2: result=firstNumber-secondNumber;
                     break;
         
-                case 3: result=a*b;
+                case 3: result=firstNumber*secondNumber;
                     break;
         
-                case 4: result=a/b;
+                case 4: result=firstNumber/secondNumber;
                     break;
         
                 default: result=0;
