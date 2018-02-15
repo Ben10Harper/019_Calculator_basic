@@ -13,7 +13,7 @@ class Calculator implements ActionListener
 {
     JFrame frame;
     JTextField textField;
-    JButton b1,b2,b3,b4,b5,b6,b7,b8,b9,b0,bdiv,bmul,bsub,badd,bdec,beq,bdel,bclr;
+    JButton b1,b2,b3,b4,b5,b6,b7,b8,b9,b0,bdiv,bmul,bsub,badd,bdec,beq,bdel,bclr,bsquare,bcube,bsqrt,blog10;
  
     static double firstNumber=0,secondNumber=0,result=0;
     static int operator=0;
@@ -40,27 +40,36 @@ class Calculator implements ActionListener
         beq=new JButton("=");
         bdel=new JButton("<--");
         bclr=new JButton("Clear");
+        bsquare=new JButton("x^2");
+        bcube=new JButton("x^3");
+        bsqrt=new JButton("sqrt");
+        blog10=new JButton("log10");
+        
         
         textField.setBounds(30,40,280,30);
         b7.setBounds(40,100,50,40);
         b8.setBounds(110,100,50,40);
         b9.setBounds(180,100,50,40);
         bdiv.setBounds(250,100,50,40);
+        bsquare.setBounds(320,100,75,40);
         
         b4.setBounds(40,170,50,40);
         b5.setBounds(110,170,50,40);
         b6.setBounds(180,170,50,40);
         bmul.setBounds(250,170,50,40);
+        bcube.setBounds(320,170,75,40);
         
         b1.setBounds(40,240,50,40);
         b2.setBounds(110,240,50,40);
         b3.setBounds(180,240,50,40);
         bsub.setBounds(250,240,50,40);
+        bsqrt.setBounds(320,240,75,40);
         
         bdec.setBounds(40,310,50,40);
         b0.setBounds(110,310,50,40);
         beq.setBounds(180,310,50,40);
         badd.setBounds(250,310,50,40);
+        blog10.setBounds(320,310,75,40);
         
         bdel.setBounds(60,380,100,40);
         bclr.setBounds(180,380,100,40);
@@ -84,10 +93,14 @@ class Calculator implements ActionListener
         frame.add(badd);
         frame.add(bdel);
         frame.add(bclr);
+        frame.add(bsquare);
+        frame.add(bcube);
+        frame.add(bsqrt);
+        frame.add(blog10);
         
         frame.setLayout(null);
         frame.setVisible(true);
-        frame.setSize(350,500);
+        frame.setSize(445,500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         
@@ -109,6 +122,10 @@ class Calculator implements ActionListener
         beq.addActionListener(this);
         bdel.addActionListener(this);
         bclr.addActionListener(this);
+        bsquare.addActionListener(this);
+        bcube.addActionListener(this);
+        bsqrt.addActionListener(this);
+        blog10.addActionListener(this);
     }
  
     public void actionPerformed(ActionEvent e)
@@ -210,11 +227,36 @@ class Calculator implements ActionListener
             //It takes the text already in the bar, then in a for loop that does every number besides the last one, length-1 is
             //the last number and it goes as long as it's less than that number. So for every number besides the last, it rewrites 
             //the numbers which makes it seem like the last digit was deleted.
-        }        
+        }
+        if(e.getSource()==bsquare)
+        {
+            firstNumber=Double.parseDouble(textField.getText());
+            double ans = Math.pow(firstNumber, 2.0);
+            textField.setText(""+ans);
+        }
+        if(e.getSource()==bcube)
+        {
+            firstNumber=Double.parseDouble(textField.getText());
+            double ans = Math.pow(firstNumber, 3.0);
+            textField.setText(""+ans);
+        }   
+        if(e.getSource()==bsqrt)
+        {
+            firstNumber=Double.parseDouble(textField.getText());
+            double ans = Math.sqrt(firstNumber);
+            textField.setText(""+ans);
+        }   
+        if(e.getSource()==blog10)
+        {
+            firstNumber=Double.parseDouble(textField.getText());
+            double ans = Math.log10(firstNumber);
+            textField.setText(""+ans);
+        }   
     }
  
     public static void main(String...s)
     {
+        /*
         double mathTest = Math.pow(10.0, 2.0);
         System.out.println("10^2="+mathTest);
         
@@ -228,8 +270,14 @@ class Calculator implements ActionListener
         System.out.println("10^2.5="+mathTest);
         
         mathTest = Math.log10(100.0);
-        System.out.println("log(100)="+mathTest);
-
+        System.out.println("log10(100)="+mathTest);
+        
+        mathTest = Math.log10(500.0);
+        System.out.println("log10(500)="+mathTest);
+        
+        mathTest = Math.log10(5.0);
+        System.out.println("log10(5)="+mathTest);
+        */
         new Calculator();
     }
 }
