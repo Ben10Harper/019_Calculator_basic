@@ -5,6 +5,7 @@
  */
 package calculator_basic;
 
+import java.awt.Color;
 import javax.swing.*;
 import java.awt.event.*;
  
@@ -13,7 +14,7 @@ class Calculator implements ActionListener
 {
     JFrame frame;
     JTextField textField;
-    JButton b1,b2,b3,b4,b5,b6,b7,b8,b9,b0,bdiv,bmul,bsub,badd,bdec,beq,bdel,bclr,bsquare,bcube,bsqrt,blog10;
+    JButton b1,b2,b3,b4,b5,b6,b7,b8,b9,b0,bdiv,bmul,bsub,badd,bdec,beq,bdel,bclr,bsquare,bcube,bsqrt,blog10,bsind,bsinr,bcosd,bcosr,bhex,boct,bbin,bln;
  
     static double firstNumber=0,secondNumber=0,result=0;
     static int operator=0;
@@ -38,41 +39,57 @@ class Calculator implements ActionListener
         badd=new JButton("+");
         bdec=new JButton(".");
         beq=new JButton("=");
-        bdel=new JButton("<--");
+        bdel=new JButton("backspace");
         bclr=new JButton("Clear");
         bsquare=new JButton("x^2");
         bcube=new JButton("x^3");
         bsqrt=new JButton("sqrt");
         blog10=new JButton("log10");
+        bsind=new JButton("sin(deg)");
+        bsinr=new JButton("sin(rad)");
+        bcosd=new JButton("cos(deg)");
+        bcosr=new JButton("cos(rad)");
+        bhex=new JButton("to hex");
+        boct=new JButton("to oct");
+        bbin=new JButton("to bin");
+        bln=new JButton("log e");
         
         
-        textField.setBounds(30,40,280,30);
+        textField.setBounds(30,40,605,30);
         b7.setBounds(40,100,50,40);
         b8.setBounds(110,100,50,40);
         b9.setBounds(180,100,50,40);
         bdiv.setBounds(250,100,50,40);
-        bsquare.setBounds(320,100,75,40);
+        bsquare.setBounds(320,100,95,40);
+        bsind.setBounds(425,100,95,40);
+        bhex.setBounds(530,100,95,40);
         
         b4.setBounds(40,170,50,40);
         b5.setBounds(110,170,50,40);
         b6.setBounds(180,170,50,40);
         bmul.setBounds(250,170,50,40);
-        bcube.setBounds(320,170,75,40);
+        bcube.setBounds(320,170,95,40);
+        bsinr.setBounds(425,170,95,40);
+        boct.setBounds(530,170,95,40);
         
         b1.setBounds(40,240,50,40);
         b2.setBounds(110,240,50,40);
         b3.setBounds(180,240,50,40);
         bsub.setBounds(250,240,50,40);
-        bsqrt.setBounds(320,240,75,40);
+        bsqrt.setBounds(320,240,95,40);
+        bcosd.setBounds(425,240,95,40);
+        bbin.setBounds(530,240,95,40);
         
         bdec.setBounds(40,310,50,40);
         b0.setBounds(110,310,50,40);
         beq.setBounds(180,310,50,40);
         badd.setBounds(250,310,50,40);
-        blog10.setBounds(320,310,75,40);
+        blog10.setBounds(320,310,95,40);
+        bcosr.setBounds(425,310,95,40);
+        bln.setBounds(530,310,95,40);
         
-        bdel.setBounds(60,380,100,40);
-        bclr.setBounds(180,380,100,40);
+        bdel.setBounds(40,380,260,40);
+        bclr.setBounds(320,380,305,40);
         
         frame.add(textField);
         frame.add(b7);
@@ -97,10 +114,19 @@ class Calculator implements ActionListener
         frame.add(bcube);
         frame.add(bsqrt);
         frame.add(blog10);
+        frame.add(bsind);
+        frame.add(bsinr);
+        frame.add(bcosd);
+        frame.add(bcosr);
+        frame.add(bhex);
+        frame.add(boct);
+        frame.add(bbin);
+        frame.add(bln);
         
         frame.setLayout(null);
         frame.setVisible(true);
-        frame.setSize(445,500);
+        frame.getContentPane().setBackground(Color.BLUE);
+        frame.setSize(660,500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         
@@ -126,6 +152,14 @@ class Calculator implements ActionListener
         bcube.addActionListener(this);
         bsqrt.addActionListener(this);
         blog10.addActionListener(this);
+        bsind.addActionListener(this);
+        bsinr.addActionListener(this);
+        bcosd.addActionListener(this);
+        bcosr.addActionListener(this);
+        bhex.addActionListener(this);
+        boct.addActionListener(this);
+        bbin.addActionListener(this);
+        bln.addActionListener(this);
     }
  
     public void actionPerformed(ActionEvent e)
@@ -252,6 +286,60 @@ class Calculator implements ActionListener
             double ans = Math.log10(firstNumber);
             textField.setText(""+ans);
         }   
+        if(e.getSource()==bsind)
+        {
+            firstNumber=Double.parseDouble(textField.getText());
+            double ans = Math.sin((firstNumber*(Math.PI/180)));
+            textField.setText(""+ans);
+        } 
+        if(e.getSource()==bsinr)
+        {
+            firstNumber=Double.parseDouble(textField.getText());
+            double ans = Math.sin(firstNumber);
+            textField.setText(""+ans);
+        } 
+        if(e.getSource()==bcosd)
+        {
+            firstNumber=Double.parseDouble(textField.getText());
+            double ans = Math.cos((firstNumber*(Math.PI/180)));
+            if(firstNumber==90){
+                ans = 0;
+            }
+            textField.setText(""+ans);
+        } 
+        if(e.getSource()==bcosr)
+        {
+            firstNumber=Double.parseDouble(textField.getText());
+            double ans = Math.cos(firstNumber);
+            textField.setText(""+ans);
+        } 
+        if(e.getSource()==bhex)
+        {
+            firstNumber=Double.parseDouble(textField.getText());
+            int i = (int)firstNumber;
+            String ans = Integer.toHexString(i).toUpperCase();
+            textField.setText(ans);
+        } 
+        if(e.getSource()==boct)
+        {
+            firstNumber=Double.parseDouble(textField.getText());
+            int i = (int)firstNumber;
+            String ans = Integer.toOctalString(i).toUpperCase();
+            textField.setText(ans);
+        } 
+        if(e.getSource()==bbin)
+        {
+            firstNumber=Double.parseDouble(textField.getText());
+            int i = (int)firstNumber;
+            String ans = Integer.toBinaryString(i);
+            textField.setText(ans);
+        } 
+        if(e.getSource()==bln)
+        {
+            firstNumber=Double.parseDouble(textField.getText());
+            double ans = Math.log(firstNumber);
+            textField.setText(""+ans);
+        }  
     }
  
     public static void main(String...s)
@@ -277,6 +365,9 @@ class Calculator implements ActionListener
         
         mathTest = Math.log10(5.0);
         System.out.println("log10(5)="+mathTest);
+        
+        String baseTest = Integer.toHexString(255).toUpperCase();
+        System.out.println("baseTest for decimal 255 = "+baseTest);
         */
         new Calculator();
     }
